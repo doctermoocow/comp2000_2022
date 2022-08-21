@@ -6,5 +6,6 @@ public class Water extends Surface {
         super(inX, inY);
         moveCost = 100;
         cellColour = Color.blue;
+        cellType = "Water";
     }
 }

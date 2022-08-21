@@ -6,5 +6,6 @@ public class Stone extends Surface {
         super(inX, inY);
         moveCost = 10;
         cellColour = Color.lightGray;
+        cellType = "Stone";
     }
 }

@@ -6,5 +6,6 @@ public class Sand extends Surface {
         super(inX, inY);
         moveCost = 50;
         cellColour = Color.yellow;
+        cellType = "Sand";
     }
 }

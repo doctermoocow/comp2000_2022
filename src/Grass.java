@@ -6,5 +6,6 @@ public class Grass extends Surface {
         super(inX, inY);
         moveCost = 20;
         cellColour = Color.green;
+        cellType = "Grass";
     }
 }
