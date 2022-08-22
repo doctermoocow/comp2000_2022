@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import javax.swing.JPanel;
 
 public class Cell {
   // fields
@@ -9,8 +8,8 @@ public class Cell {
   int y;
   Color cellColour;
   static int size = 35;
-  String cellType = "blank cell";
-  String movementInfo;
+  String cellType;
+  int moveCost;
   String tipInfo;
 
   // constructors
@@ -20,13 +19,17 @@ public class Cell {
   }
 
   // methods
-  public void paint(Graphics g, Point mousePos) {
+  public boolean paint(Graphics g, Point mousePos) {
+    boolean isActive = false;
+    if (contains(mousePos)) {
+      isActive = true;
+    }
     g.setColor(cellColour);
-    JPanel cellToolTip = new JPanel();
-    cellToolTip.setToolTipText("random");
     g.fillRect(x, y, size, size);
     g.setColor(Color.BLACK);
     g.drawRect(x, y, size, size);
+    return isActive;
+
   }
 
   public boolean contains(Point p) {
@@ -36,10 +39,4 @@ public class Cell {
       return false;
     }
   }
-
-  public String createTip() {
-    tipInfo = cellType + "\n" + movementInfo;
-    return tipInfo;
-  }
-
 }

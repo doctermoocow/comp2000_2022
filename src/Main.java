@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 public class Main extends JFrame {
   class Canvas extends JPanel {
     Grid grid = new Grid();
+    private String toolTip;
 
     public Canvas() {
       setPreferredSize(new Dimension(720, 720));
@@ -14,6 +15,17 @@ public class Main extends JFrame {
     @Override
     public void paint(Graphics g) {
       grid.paint(g, getMousePosition());
+      setToolTipText(grid.getToolTip());
+    }
+
+    public void toolTip(String tipText) {
+      setToolTipText(tipText);
+
+    }
+
+    public String getToolTip() {
+      toolTip = grid.toolTip;
+      return toolTip;
     }
   }
 

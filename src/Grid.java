@@ -3,6 +3,7 @@ import java.awt.Point;
 
 public class Grid {
   Cell[][] cells = new Cell[20][20];
+  String toolTip;
 
   public Grid() {
     for (int i = 0; i < cells.length; i++) {
@@ -17,8 +18,9 @@ public class Grid {
   public void paint(Graphics g, Point mousePos) {
     for (int i = 0; i < cells.length; i++) {
       for (int j = 0; j < cells[i].length; j++) {
-        cells[i][j].paint(g, mousePos);
-
+        if (cells[i][j].paint(g, mousePos)) {
+          setToolTipText(cells[i][j]);
+        }
       }
     }
   }
@@ -47,12 +49,27 @@ public class Grid {
     return newCell;
   }
 
-  private boolean isBetween(int x, int lower, int higher) {
+  private boolean isBetween(int x, int lower, int higher) { // checks if x is between the lower and higher bounds
+                                                            // (inclusive)
     boolean result = false;
     if (x >= lower && x <= higher) {
       result = true;
     }
     return result;
 
+  }
+
+  public void setToolTipText(Cell cell) {
+    toolTip = "<html>" + "Type: " + cell.cellType;
+    if (cell.moveCost != 0) {
+      toolTip += "<br>" + "Crossing Time: " + cell.moveCost / 5 + "</html>";
+
+    } else {
+      toolTip += "<br>Cannot cross" + "</html>";
+    }
+  }
+
+  public String getToolTip() {
+    return toolTip;
   }
 }
